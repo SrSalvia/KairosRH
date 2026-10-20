@@ -1,0 +1,20 @@
+FÉRIAS E BANCO DE HORAS
+=======================
+
+Como abrir
+- Extraia o .zip e dê dois cliques em index.html (abre no navegador).
+
+Estrutura
+  index.html      -> estrutura da página (textos e campos)
+  css/style.css   -> visual (cores, tamanhos, espaçamentos)
+  js/app.js       -> lógica (contagem, cálculo do banco, configurações)
+
+Onde editar
+- Cores: no início de css/style.css, bloco ":root" (--ceu, --teal, --areia...).
+- Valores iniciais: no início de js/app.js, objeto PADRAO
+  (título, fim do expediente, jornada, dias de trabalho, destino e datas das férias).
+- Textos: direto no index.html.
+
+Observações
+- Os dados ficam salvos no navegador em que o app for aberto (localStorage).
+- Mantenha as três partes juntas, na mesma estrutura de pastas.

@@ -1,0 +1,123 @@
+/* Férias e banco de horas — estilos */
+
+/* ===== Cores principais (edite aqui) ===== */
+:root{
+  --ceu:#2b7489;        /* fundo do topo */
+  --mar1:#3c9cb2;
+  --mar2:#2f8aa1;
+  --areia:#f3e4bf;      /* fundo da página */
+  --sol:#e9c25a;
+  --teal:#0b4f5c;       /* botões e destaques */
+  --teal-escuro:#0e4c5d;/* cartão das horas úteis */
+  --texto:#12343b;
+  --texto-2:#4a6670;
+  --rotulo:#3f5a61;
+  --borda:#c9dadd;
+  --painel:#eef5f6;
+  --positivo:#0b5f73;
+  --negativo:#a3470f;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--areia);font-family:'Manrope',system-ui,sans-serif;color:var(--texto)}
+button{font-family:inherit;cursor:pointer}
+input{font-family:inherit}
+h1,h2,p{margin:0}
+.num{font-variant-numeric:tabular-nums}
+
+/* ===== Topo / cenário ===== */
+.hero{position:relative;overflow:hidden;background:var(--ceu);padding:20px 16px 132px}
+.sol{position:absolute;top:120px;right:-36px;width:120px;height:120px;border-radius:50%;background:var(--sol);opacity:.85}
+.nuvem{position:absolute;border-radius:999px;background:rgba(255,255,255,.15)}
+.nuvem.n1{top:150px;left:30%;width:190px;height:44px}
+.nuvem.n2{top:210px;left:-40px;width:180px;height:52px;background:rgba(255,255,255,.12)}
+.ondas{position:absolute;left:0;bottom:0;width:100%;height:150px;display:block}
+.coqueiro{position:absolute;left:-8px;bottom:34px;width:110px;height:146px}
+.wrap{position:relative;max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+.topo{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#dcf0f5}
+.titulo{font-size:30px;line-height:1.1;font-weight:800;color:#fff;margin-top:4px}
+.btn-icone{flex:none;width:48px;height:48px;border-radius:14px;border:1px solid rgba(255,255,255,.35);background:rgba(8,40,50,.25);color:#fff;display:flex;align-items:center;justify-content:center;padding:0}
+.chip{align-self:flex-start;padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.4);background:rgba(8,40,50,.22);color:#fff;font-size:15px;font-weight:600}
+.secao-cab{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.secao-cab h2{display:flex;align-items:center;gap:8px;font-size:20px;font-weight:800;color:#fff}
+.secao-cab small{font-size:13px;color:#e3f3f7}
+.contador{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:8px;border-radius:22px;background:rgba(8,40,50,.18);border:1px solid rgba(255,255,255,.25);margin-top:10px}
+.tile{display:flex;flex-direction:column;align-items:center;gap:2px;padding:14px 4px 12px;border-radius:16px;background:rgba(8,40,50,.26);border:1px solid rgba(255,255,255,.22)}
+.tile b{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:46px;line-height:1;color:#fff}
+.tile span{font-size:11px;font-weight:800;letter-spacing:.08em;color:#fff}
+.acabou{font-size:15px;font-weight:700;color:#fff;margin-top:8px}
+.uteis{display:flex;flex-direction:column;align-items:center;gap:8px;padding:26px 16px 22px;border-radius:26px;background:var(--teal-escuro);border:1px solid rgba(255,255,255,.18);text-align:center;margin-top:10px}
+.uteis .grande{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:66px;line-height:1;color:#fff}
+.uteis .rot{font-size:13px;font-weight:800;letter-spacing:.08em;color:#fff}
+.uteis .status{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:14px;color:#dcf0f5}
+.ponto{width:9px;height:9px;border-radius:50%;display:inline-block;background:#f0c66b}
+.ponto.on{background:#8fe3b0}
+
+/* ===== Cartões ===== */
+.conteudo{position:relative;max-width:520px;margin:-96px auto 0;padding:0 16px 48px;display:flex;flex-direction:column;gap:16px}
+.card{background:#fff;border-radius:26px;padding:20px 18px;display:flex;flex-direction:column;gap:12px;box-shadow:0 10px 30px rgba(18,52,59,.12)}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;text-align:center}
+.mini{background:var(--painel);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:4px}
+.mini .rot{font-size:12px;font-weight:800;letter-spacing:.06em;color:var(--rotulo)}
+.mini .val{font-size:28px;font-weight:800;color:var(--teal)}
+.info{background:var(--painel);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;font-size:15px;color:var(--rotulo);line-height:1.45}
+.info strong{color:var(--texto)}
+.btn-tempo{display:flex;align-items:center;justify-content:center;gap:10px;min-height:60px;padding:12px 16px;border-radius:18px;background:var(--teal);color:#fff;text-decoration:none;font-size:17px;font-weight:800;letter-spacing:.02em;text-align:center}
+.sub{text-align:center;font-size:14px;color:var(--texto-2)}
+.card h2{font-size:24px;font-weight:800}
+.desc{font-size:15px;line-height:1.5;color:var(--texto-2)}
+.painel{border:1px solid #d6e3e6;background:#f6fafa;border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:14px}
+.linha{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.dia-titulo{font-size:17px;font-weight:800}
+.pill{padding:6px 12px;border-radius:999px;background:#dff0ec;color:#0b5446;font-size:13px;font-weight:800}
+.campo{display:flex;flex-direction:column;gap:6px;min-width:0}
+.campo label{font-size:12px;font-weight:800;letter-spacing:.06em;color:var(--rotulo)}
+.campo input{width:100%;height:52px;padding:0 12px;border:1px solid var(--borda);border-radius:14px;background:#fff;color:var(--texto);font-size:17px}
+.stat{background:#fff;border:1px solid #e0eaec;border-radius:14px;padding:10px 6px}
+.stat .rot{font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--rotulo)}
+.stat .val{font-size:20px;font-weight:800}
+.botoes{display:flex;gap:10px;flex-wrap:wrap}
+.btn{min-height:48px;border-radius:14px;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:8px;padding:0 16px}
+.btn.primario{flex:1 1 180px;border:0;background:var(--teal);color:#fff}
+.btn.secundario{flex:1 1 120px;border:1px solid var(--borda);background:#fff;color:var(--teal)}
+.card h3{margin:0;font-size:20px;font-weight:800}
+.soma{font-size:14px;color:var(--texto-2)}
+.soma strong{color:var(--teal)}
+.hist{display:flex;flex-direction:column;gap:8px}
+.hist-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:14px;background:#f6fafa;border:1px solid #e0eaec}
+.hist-item .abrir{flex:1 1 auto;min-width:0;min-height:44px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:2px;border:0;background:transparent;padding:0;text-align:left;color:var(--texto)}
+.hist-item .abrir b{font-size:15px}
+.hist-item .abrir span{font-size:13px;color:var(--texto-2)}
+.saldo{font-size:17px;font-weight:800}
+.saldo.pos{color:var(--positivo)} .saldo.neg{color:var(--negativo)}
+.saldo.aberto{font-size:13px;font-weight:700;color:var(--texto-2)}
+.remover{flex:none;width:44px;height:44px;border-radius:12px;border:1px solid #d6e3e6;background:#fff;color:var(--texto-2);display:flex;align-items:center;justify-content:center;padding:0}
+.rodape{text-align:center;font-size:13px;color:#5a5040}
+
+/* ===== Configurações ===== */
+.modal{position:fixed;inset:0;z-index:50;background:rgba(6,30,38,.6);overflow-y:auto;padding:24px 12px}
+.modal[hidden]{display:none}
+.dialogo{max-width:520px;margin:0 auto;background:#fff;border-radius:28px;padding:24px 20px;display:flex;flex-direction:column;gap:18px}
+.dialogo h2{font-size:30px;font-weight:800}
+.fechar{width:48px;height:48px;border-radius:14px;border:0;background:#eef3f4;color:var(--texto);display:flex;align-items:center;justify-content:center;padding:0}
+.grupo{display:flex;flex-direction:column;gap:10px}
+.grupo-titulo{font-size:13px;font-weight:800;letter-spacing:.1em;color:var(--teal);text-transform:uppercase}
+.grupo-desc{font-size:14px;color:var(--texto-2)}
+.grupo-desc strong{color:var(--texto)}
+.dias{display:flex;flex-wrap:wrap;gap:8px}
+.toggle{min-width:54px;min-height:44px;padding:0 12px;border-radius:14px;border:1px solid #d6e3e6;background:#f2f6f7;color:var(--rotulo);font-size:15px;font-weight:700}
+.toggle[aria-pressed="true"]{border-color:var(--teal);background:var(--teal);color:#fff;font-weight:800}
+.toggle.largo{min-height:52px;border-radius:16px;font-size:16px}
+.saldo-calc{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;border-radius:16px;background:#f2f6f7;border:1px solid #e0eaec}
+.saldo-calc .rot{font-size:13px;font-weight:800;letter-spacing:.06em;color:var(--rotulo)}
+.saldo-calc .val{font-size:26px;font-weight:800;color:var(--teal)}
+.btn-ajuste{min-height:52px;border-radius:16px;border:1px solid var(--borda);background:var(--painel);color:var(--teal);font-size:16px;font-weight:800;letter-spacing:.04em}
+.ajuste{display:flex;flex-direction:column;gap:8px;padding:14px;border-radius:16px;border:1px dashed #9fbcc2}
+.ajuste label{font-size:14px;color:var(--rotulo)}
+.ajuste .linha-aj{display:flex;gap:8px;flex-wrap:wrap}
+.ajuste input{flex:1 1 140px;min-width:0;height:48px;padding:0 14px;border:1px solid var(--borda);border-radius:12px;color:var(--texto);font-size:17px}
+.ajuste button{min-height:48px;padding:0 18px;border-radius:12px;border:0;background:var(--teal);color:#fff;font-size:15px;font-weight:800}
+.erro{font-size:14px;font-weight:700;color:var(--negativo)}
+.salvar{min-height:60px;border-radius:18px;border:0;background:var(--teal);color:#fff;font-size:18px;font-weight:800;letter-spacing:.04em}
+[hidden]{display:none !important}

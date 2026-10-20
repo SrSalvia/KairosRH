@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Férias e banco de horas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="sol" aria-hidden="true"></div>
+  <div class="nuvem n1" aria-hidden="true"></div>
+  <div class="nuvem n2" aria-hidden="true"></div>
+  <svg class="ondas" aria-hidden="true" viewBox="0 0 400 150" preserveAspectRatio="none">
+    <path d="M0 46 C 80 24, 160 66, 240 44 S 360 22, 400 40 L400 150 L0 150 Z" fill="var(--mar1)"/>
+    <path d="M0 74 C 90 58, 170 90, 260 72 S 370 58, 400 70 L400 150 L0 150 Z" fill="var(--mar2)"/>
+    <path d="M0 108 C 110 84, 230 128, 400 96 L400 150 L0 150 Z" fill="var(--areia)"/>
+  </svg>
+  <svg class="coqueiro" aria-hidden="true" viewBox="0 0 120 160">
+    <path d="M64 158 C 60 120, 52 90, 58 52" stroke="#6b4a2b" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <g fill="#2e7d4f">
+      <path d="M58 52 C 40 30, 18 30, 4 44 C 22 38, 40 42, 58 52 Z"/>
+      <path d="M58 52 C 50 26, 30 12, 12 14 C 30 20, 46 32, 58 52 Z"/>
+      <path d="M58 52 C 66 26, 86 12, 106 16 C 86 22, 70 34, 58 52 Z"/>
+      <path d="M58 52 C 78 36, 100 38, 116 52 C 98 46, 78 46, 58 52 Z"/>
+      <path d="M58 52 C 58 32, 62 18, 70 6 C 66 22, 64 36, 58 52 Z"/>
+    </g>
+  </svg>
+
+  <div class="wrap">
+    <div class="topo">
+      <div>
+        <div class="eyebrow">Contagem oficial</div>
+        <h1 class="titulo" id="titulo">Controle de horas</h1>
+      </div>
+      <button type="button" class="btn-icone" id="abrirConfig" aria-label="Abrir configurações">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
+    </div>
+
+    <div class="chip" id="agora">—</div>
+
+    <section>
+      <div class="secao-cab">
+        <h2>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12"/><path d="M6 22h12"/><path d="M7 2v3.5a5 5 0 0 0 1.6 3.6L12 12l3.4-2.9A5 5 0 0 0 17 5.5V2"/><path d="M7 22v-3.5a5 5 0 0 1 1.6-3.6L12 12l3.4 2.9a5 5 0 0 1 1.6 3.6V22"/></svg>
+          Tempo corrido
+        </h2>
+        <small>até o fim do expediente</small>
+      </div>
+      <div class="contador">
+        <div class="tile"><b class="num" id="cDias">0</b><span>DIAS</span></div>
+        <div class="tile"><b class="num" id="cHoras">00</b><span>HORAS</span></div>
+        <div class="tile"><b class="num" id="cMin">00</b><span>MIN</span></div>
+        <div class="tile"><b class="num" id="cSeg">00</b><span>SEG</span></div>
+      </div>
+      <div class="acabou" id="acabou" hidden>Acabou o expediente. Boas férias!</div>
+    </section>
+
+    <section>
+      <div class="secao-cab">
+        <h2>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg>
+          Horas úteis
+        </h2>
+        <small id="uteisDica">jornada restante − banco</small>
+      </div>
+      <div class="uteis">
+        <div class="grande num" id="uteisGrande">000:00:00</div>
+        <div class="rot">HORAS ÚTEIS RESTANTES</div>
+        <div class="status"><span class="ponto" id="statusPonto" aria-hidden="true"></span><span id="statusTexto">—</span></div>
+      </div>
+    </section>
+  </div>
+</header>
+
+<main class="conteudo">
+  <section class="card">
+    <div class="grid2">
+      <div class="mini"><div class="rot">JORNADA DIÁRIA</div><div class="val num" id="jornadaDiaria">00:00</div></div>
+      <div class="mini"><div class="rot">BANCO ATUAL</div><div class="val num" id="bancoAtual">+00:00</div></div>
+    </div>
+    <div class="info">
+      <div>Fim do expediente: <strong id="fimLabel">—</strong></div>
+      <div>Expediente restante: <strong id="restante">—</strong><span id="aposBancoWrap"> · Após banco: <strong id="aposBanco">—</strong></span></div>
+      <div>Dias úteis restantes: <strong id="diasUteis">—</strong></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <a class="btn-tempo" id="linkTempo" href="#" target="_blank" rel="noopener noreferrer">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M20 12h2"/><path d="M19.07 4.93l-1.41 1.41"/><path d="M15.95 12.35a4 4 0 0 0-6.9-3.3"/><path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6z"/></svg>
+      PREVISÃO DO TEMPO DAS FÉRIAS
+    </a>
+    <div class="sub" id="feriasLabel">—</div>
+  </section>
+
+  <section class="card">
+    <h2>Horas feitas hoje</h2>
+    <p class="desc">Preencha os horários reais do dia. O app compara com a sua jornada padrão e atualiza o banco sozinho.</p>
+    <div class="painel">
+      <div class="linha">
+        <div class="dia-titulo" id="diaTitulo">—</div>
+        <div class="pill" id="diaStatus">Aguardando horários</div>
+      </div>
+      <div class="campo">
+        <label for="selData">DIA DO LANÇAMENTO</label>
+        <input type="date" id="selData">
+      </div>
+      <div class="grid2">
+        <div class="campo"><label for="p-e1">1ª ENTRADA</label><input type="time" id="p-e1" data-key="e1"></div>
+        <div class="campo"><label for="p-s1">1ª SAÍDA</label><input type="time" id="p-s1" data-key="s1"></div>
+        <div class="campo"><label for="p-e2">2ª ENTRADA</label><input type="time" id="p-e2" data-key="e2"></div>
+        <div class="campo"><label for="p-s2">2ª SAÍDA</label><input type="time" id="p-s2" data-key="s2"></div>
+      </div>
+      <div class="grid3">
+        <div class="stat"><div class="rot">FEITAS</div><div class="val num" id="diaFeitas">00:00</div></div>
+        <div class="stat"><div class="rot">JORNADA</div><div class="val num" id="diaJornada">00:00</div></div>
+        <div class="stat"><div class="rot">SALDO DO DIA</div><div class="val num" id="diaSaldo" style="color:var(--teal)">—</div></div>
+      </div>
+      <div class="botoes">
+        <button type="button" class="btn primario" id="baterPonto">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          Bater ponto agora
+        </button>
+        <button type="button" class="btn secundario" id="limparDia">Limpar dia</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="linha" style="align-items:baseline">
+      <h3>Dias lançados</h3>
+      <div class="soma">Soma no banco: <strong id="somaBanco">+00:00</strong></div>
+    </div>
+    <p class="desc" id="histVazio">Nenhum dia lançado ainda. Os dias que você preencher acima aparecem aqui.</p>
+    <div class="hist" id="hist"></div>
+  </section>
+
+  <p class="rodape">Os dados ficam salvos neste navegador.</p>
+</main>
+
+<!-- ===== Configurações ===== -->
+<div class="modal" id="modal" hidden>
+  <div class="dialogo" role="dialog" aria-modal="true" aria-labelledby="cfgTitulo">
+    <div class="linha">
+      <h2 id="cfgTitulo">Configurações</h2>
+      <button type="button" class="fechar" id="fecharConfig" aria-label="Fechar configurações">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <div class="campo">
+      <label for="cfgNome" class="grupo-titulo" style="font-size:13px;letter-spacing:.1em;color:var(--teal)">Título da contagem</label>
+      <input type="text" id="cfgNome">
+    </div>
+
+    <div class="grupo">
+      <div class="grupo-titulo">Fim do expediente antes das férias</div>
+      <div class="grid2">
+        <div class="campo"><label for="cfgFimData">DATA</label><input type="date" id="cfgFimData"></div>
+        <div class="campo"><label for="cfgFimHora">HORÁRIO</label><input type="time" id="cfgFimHora"></div>
+      </div>
+    </div>
+
+    <div class="grupo">
+      <div class="grupo-titulo">Jornada padrão</div>
+      <div class="grupo-desc">Vale para todos os dias de trabalho selecionados. Total: <strong id="cfgTotal">00:00</strong></div>
+      <div class="grid2">
+        <div class="campo"><label for="j-e1">1ª ENTRADA</label><input type="time" id="j-e1"></div>
+        <div class="campo"><label for="j-s1">1ª SAÍDA</label><input type="time" id="j-s1"></div>
+        <div class="campo"><label for="j-e2">2ª ENTRADA</label><input type="time" id="j-e2"></div>
+        <div class="campo"><label for="j-s2">2ª SAÍDA</label><input type="time" id="j-s2"></div>
+      </div>
+    </div>
+
+    <div class="grupo">
+      <div class="grupo-titulo">Dias de trabalho</div>
+      <div class="dias" id="cfgDias"></div>
+    </div>
+
+    <div class="grupo">
+      <div class="grupo-titulo">Banco de horas</div>
+      <div class="grid2">
+        <button type="button" class="toggle largo" id="bancoNao" aria-pressed="false">Não</button>
+        <button type="button" class="toggle largo" id="bancoSim" aria-pressed="true">Sim</button>
+      </div>
+      <div class="grupo" id="bancoArea">
+        <div class="saldo-calc"><div class="rot">SALDO CALCULADO</div><div class="val num" id="saldoCalc">+00:00</div></div>
+        <button type="button" class="btn-ajuste" id="abrirAjuste">AJUSTAR SALDO DO BANCO</button>
+        <div class="ajuste" id="ajusteArea" hidden>
+          <label for="ajusteInput">Informe o saldo atual do seu banco (como aparece no ponto da empresa), por exemplo <strong>+09:37</strong> ou <strong>-01:15</strong>.</label>
+          <div class="linha-aj">
+            <input type="text" id="ajusteInput" placeholder="+00:00">
+            <button type="button" id="aplicarAjuste">Aplicar</button>
+          </div>
+          <div class="erro" id="ajusteErro" hidden></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grupo">
+      <div class="grupo-titulo">Férias</div>
+      <div class="campo"><label for="cfgDestino">DESTINO (PARA A PREVISÃO DO TEMPO)</label><input type="text" id="cfgDestino"></div>
+      <div class="grid2">
+        <div class="campo"><label for="cfgFeriasIni">INÍCIO</label><input type="date" id="cfgFeriasIni"></div>
+        <div class="campo"><label for="cfgFeriasFim">FIM</label><input type="date" id="cfgFeriasFim"></div>
+      </div>
+    </div>
+
+    <div class="erro" id="salvarErro" hidden></div>
+    <button type="button" class="salvar" id="salvarConfig">SALVAR CONFIGURAÇÕES</button>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
